@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>File Uploader</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>My file uploader</h1>
+
+    <input type='file' name='file' id='file'>
+    <button id='btnUpload' type='submit'>Upload</button>
+    <div id='divOutput'>
+
+    </div>
+
+    <script type='text/javascript'>
+        const btnUpload = document.getElementById('btnUpload');
+        const divOutput = document.getElementById('divOutput');
+        const file = document.getElementById('file');
+
+        btnUpload.addEventListener('click', function (e) {
+            const fileReader = new FileReader();
+            // TODO make more than one file upload possible
+            const theFile = file.files[0];
+            fileReader.onload = ev => {
+                console.log('Read successfully')
+                
+                const CHUNK_SIZE = 1000;
+                const chunkCount = ev.target.result.byteLength / (CHUNK_SIZE + 1);
+
+                for (let chunkId = 0; chunkId < chunkCount; chunkId++) {
+
+                }
+            };
+            fileReader.readAsArrayBuffer(theFile);
+        })
+    </script>
+</body>
+
+</html>
