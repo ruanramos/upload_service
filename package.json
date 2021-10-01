@@ -1,13 +1,14 @@
 {
-  "name": "node_mongo",
+  "name": "file-uploader-service",
   "version": "1.0.0",
-  "description": "",
+  "description": "File uploader service",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js -w index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ruan Ramos",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.13"

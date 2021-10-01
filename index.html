@@ -33,7 +33,7 @@
                 const chunkCount = ev.target.result.byteLength / (CHUNK_SIZE + 1);
 
                 for (let chunkId = 0; chunkId < chunkCount; chunkId++) {
-
+                    const chunk = ev.target.result.slice(CHUNK_SIZE * chunkId, CHUNK_SIZE * chunkId + CHUNK_SIZE);
                 }
             };
             fileReader.readAsArrayBuffer(theFile);
