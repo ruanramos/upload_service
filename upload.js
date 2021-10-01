@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>File Uploader</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-
-<body>
-    <h1>My file uploader</h1>
-
-    <input type='file' name='file' id='file'>
-    <button id='btnUpload' type='submit'>Upload</button>
-    <div id='divOutput'>
-
-    </div>
-
-    <script type="text/javascript">
-        console.log("AAA")
+console.log("AAA")
 const btnUpload = document.getElementById('btnUpload');
 const divOutput = document.getElementById('divOutput');
 const file = document.getElementById('file');
@@ -27,13 +7,12 @@ btnUpload.addEventListener('click', function (e) {
     const fileReader = new FileReader();
     // TODO make more than one file upload possible
     const theFile = file.files[0];
-    fileReader.onload = async ev => {
+    fileReader.onload = ev => {
         console.log('Read successfully');
         const filename = Math.random() * 1000 + theFile.name;
 
         const CHUNK_SIZE = 1000;
         const chunkCount = ev.target.result.byteLength / (CHUNK_SIZE + 1);
-        console.log(chunkCount)
 
         for (let chunkId = 0; chunkId < chunkCount; chunkId++) {
             const chunk = ev.target.result.slice(CHUNK_SIZE * chunkId, CHUNK_SIZE * chunkId + CHUNK_SIZE);
@@ -47,13 +26,7 @@ btnUpload.addEventListener('click', function (e) {
                 },
                 "body": chunk
             });
-            
         }
     };
     fileReader.readAsArrayBuffer(theFile);
 })
-    </script>
-
-</body>
-
-</html>
