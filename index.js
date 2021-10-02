@@ -18,6 +18,14 @@ server.on("request", (req, res) => {
         res.end(fs.readFileSync('index.html'));
         return;
     }
+
+    if(req.url === '/upload') {
+        const filename = req.headers['filename'];
+        
+        res.write(req.headers.filename);
+        res.end('ok');
+        return;
+    }
 });
 
 server.listen(9000, "127.0.0.1");
