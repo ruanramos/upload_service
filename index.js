@@ -35,10 +35,10 @@ server.on("request", (req, res) => {
                 });
             }
             fs.appendFileSync(`./files/${filename}`, chunk)
-            console.log(`Received chunk! ${chunk.length}`)
+            console.log(`Received chunk! Filename: ${filename} - Chunk size: ${chunk.length}`)
         });
         res.end("uploaded file!")
     }
 });
 
-server.listen(9000, "127.0.0.1");
+server.listen(9000, "0.0.0.0");
