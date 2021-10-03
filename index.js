@@ -1,4 +1,8 @@
 
+// TODO make it scalable by using a database to store blobs
+// When client finishes sending chunks, one server take all blobs
+// and build the file
+
 const newLocal = require("mongoose");
 
 const http = require("http");
@@ -19,12 +23,16 @@ server.on("request", (req, res) => {
         return;
     }
 
-    if(req.url === '/upload') {
+    // TODO add idempotency and resumability
+    // If a chunk get lost, we will append next one and file will be corrupted
+    // We need to receive chunk id and make sure it's ok
+    if (req.url === '/upload') {
         const filename = req.headers['filename'];
-        
-        res.write(req.headers.filename);
-        res.end('ok');
-        return;
+        req.on('data', (chunk) => {
+            fs.appendFileSync(`./files/${filename}`, chunk)
+            console.log(`Received chunk! ${chunk.length}`)
+        });
+        res.end("uploaded file!")
     }
 });
 
