@@ -29,6 +29,11 @@ server.on("request", (req, res) => {
     if (req.url === '/upload') {
         const filename = req.headers['filename'];
         req.on('data', (chunk) => {
+            if (!fs.existsSync('./files')) {
+                fs.mkdir('./files', (err) => {
+                    console.log(err);
+                });
+            }
             fs.appendFileSync(`./files/${filename}`, chunk)
             console.log(`Received chunk! ${chunk.length}`)
         });
