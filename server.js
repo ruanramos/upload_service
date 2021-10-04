@@ -19,7 +19,12 @@ server.on("error", (err) => console.log(`Error ${err}`));
 
 server.on("request", (req, res) => {
     if (req.url === "/") {
-        res.end(fs.readFileSync('index.html'));
+        res.end(fs.readFileSync('./client/index.html'));
+        return;
+    }
+
+    if (req.url === "/upload.js") {
+        res.end(fs.readFileSync('./client/upload.js'));
         return;
     }
 
@@ -41,4 +46,4 @@ server.on("request", (req, res) => {
     }
 });
 
-server.listen(9000, "0.0.0.0");
+server.listen(9000, "localhost");
